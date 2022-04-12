@@ -7,7 +7,7 @@ namespace SpoilBlock.DAL.Abstract
     public interface IWoopUserMediumRepository: IRepository<WoopuserMedium>
     {
 
-        int GetBlockageLevel(int id);
+        IEnumerable<int> GetBlockageLevel(int id);
         IEnumerable<Medium> GetListOfShowsForUser(int? id);
     }
 }

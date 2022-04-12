@@ -19,5 +19,7 @@ namespace SpoilBlock.DAL.Abstract
 
         IEnumerable<Medium> GetListOfShows(IEnumerable<Medium> mediaList, Woopuser user);
 
+        Task<Woopuser>? GetWoopUserByIdentityIdAsync(string identityID);
+
     }
 }

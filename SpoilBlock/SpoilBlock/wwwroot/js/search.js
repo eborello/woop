@@ -21,7 +21,21 @@ $(document).ready(function (){
         });
 
     });
+
+    $(document).on("click", ".btn", function () {
+        $.ajax({
+            url: '/Add/AddMediaToWatchlist',
+            data: {
+                media: `{Imdbid: "${$(event.target).attr("id")}", image: "${$(event.target).parent().parent().find("img").attr('src')}", title: "${$(event.target).parent().parent().find(".mediatitle").text()}", description: "${$(event.target).parent().parent().find(".mediadescription").text()}"}`
+            },
+            method: 'POST',
+            success: DisableButtonsForShowsAlreadyOnWatchlist
+        });
+    });
+
 });
+
+
 
 
 function buildSearchResults(data) {
@@ -32,22 +46,45 @@ function buildSearchResults(data) {
         return;
     }
 
-    var results = JSON.parse(data.list);
+    try {
+        var results = JSON.parse(data.list);
+    } catch (error) {
+        errorState("There was a problem with IMDb");
+        return;
+    }
 
-    let searchTable = $('<table class="table"><tbody>');
+
+    let searchTable = $('<table class="table" id="resultsTable"><tbody>');
     $.each(results, function (i) {
-        let tr = $(`<tr><td><div class="img-max"><img src=${results[i].image} class="img-fluid"></div></td><td>${results[i].title}</td><td>${results[i].description}</td><td>`).appendTo(searchTable);
+        let tr = $(`<tr><td><div class="img-max"><img src=${results[i].image} class="img-fluid"></div></td><td class="mediatitle">${results[i].title}</td><td class="mediadescription">${results[i].description}</td><td><input type="submit" value="Add" id="${results[i].id}" class="btn btn-primary"</td></tr>`).appendTo(searchTable);
     });
-    console.log(searchTable);
     $('#resultsTableDiv')
         .empty()
         .append(searchTable);
+
+    $.ajax({
+        url: '/Add/GetCurrentWatchListIDs',
+        success: DisableButtonsForShowsAlreadyOnWatchlist
+    });
+}
+
+
+function DisableButtonsForShowsAlreadyOnWatchlist(data) {
+    var results = JSON.parse(data.list);
+    $.each(results, function (i) {
+        $('.btn').each(function () {
+            if ($(this).attr('id') == results[i]) {
+                $(this).prop("disabled", true);
+                $(this).prop("class", "btn btn-secondary");
+                $(this).prop("value", "Added");
+            }
+        });
+    });
 }
 
 
 function errorState(message) {
     console.log(message)
-    toggleButtonLoading();
 
     $('#resultsTableDiv').empty().append(`<p class="text-danger">Sorry, we're having issues communicating with IMDb.  Please try again later.</p>`)
 }

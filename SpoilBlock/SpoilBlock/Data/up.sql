@@ -10,7 +10,8 @@ CREATE TABLE [Media] (
     [ID] int PRIMARY KEY IDENTITY(1,1),
     [IMDBID] nvarchar(50) NOT NULL,
     [Title] nvarchar(50) NOT NULL,
-    [Description] nvarchar(400) NOT NULL
+    [Description] nvarchar(400) NOT NULL,
+    [Image] nvarchar(200) NOT NULL
 );
 
 CREATE TABLE [WOOPUserMedia] (

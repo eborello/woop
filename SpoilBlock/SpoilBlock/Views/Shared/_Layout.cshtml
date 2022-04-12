@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SpoilBlock</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/SpoilBlock.styles.css" asp-append-version="true" />
+    
 </head>
 
 
@@ -48,10 +49,7 @@
                 </main>
             
     </div>
-  
-    
-    
-    
+
 
     <footer class="border-top footer text-muted">
         <div class="container">
@@ -61,6 +59,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("WatchlistScript", required: false)
     @await RenderSectionAsync("Scripts", required: false)
 </div>
 </html>

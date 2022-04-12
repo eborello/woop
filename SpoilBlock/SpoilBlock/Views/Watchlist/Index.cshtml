@@ -5,45 +5,49 @@
 @inject UserManager<IdentityUser> UserManager
 
 
+
+
 @{
     ViewData["Title"] = "Watchlist Page";
 }
 <div>
     @if (SignInManager.IsSignedIn(User) && Model.HasWoopUser)
     {
-    
-        //When the user is logged in view watchlist page
-    
-    
-        
-        <h2 class="display-4" style="float:left; margin-bottom:30px;">Your Watchlist</h2>
-        
-    
+
         @if (Model.IsEmpty == false)
         {
-            <div class="text-center" stye="margin-top:60px;">
-                <table class="table table-dark table-hover">     
-                    <thead >
+            <div class="text-center" style="margin-top:60px;">
+
+                <table id="sortTable" class="table table-bordered" style="border-radius:5px; font-size:20px;">    
+                    <caption>Your Watchlist</caption>
+                    <thead class="table-dark">
+
                         <tr>
-                            
-                            <th scope="col">Title</th>
-                            <th scope="col">Description</th>
-                            
+                            <th data-type="number">#</th>
+                            <th data-type="string"><button class="table_header">Title</button></th>
+                            <th data-type="string"><button class="table_header">Description</button></th>
+                            <th data-type="number"><button class="table_header">Block-Level</button></th>
+
                         </tr>
                     </thead>
-    
+
                     <tbody>
-    
-                            @foreach (var items in @Model.AllShows)
+                          @{
+                                int i = 1;
+                           }
+                            @foreach (var item in @Model.AllShows)
                             {
                                 <tr>
-                                    <td>@items.Title</td>
-                                    <td>@items.Description</td>
-                                    
+                                    <td>@(i++)</td>
+                                    <td style="max-width:100px;max-height:100px;">
+                                        <div class="imageandname"><img src= "@item.Image" class="img-fluid">@item.Title</div>
+                                    </td>
+                                    <td style="padding-top:50px;">@item.Description</td>
+                                    <td>@Model.Levels</td>
+                                    <td><button name="deleteButton" class="btn btn-danger" id="@item.Id">Delete</button></td>
                                 </tr>
                             }
-                            
-                        
+
                     </tbody>
                 </table>
             </div>
@@ -53,7 +57,7 @@
             <div class = "text-center">
     
                 <h2> You dont have anything in your watchlist. Do you want add some shows?</h2>
-                <a class="btn btn-primary" asp-controller="Search" asp-action="Index">Click Here!</a>
+                <a id="redirectToSearch" class="btn btn-primary" asp-controller="Search" asp-action="Index">Click Here!</a>
             </div>
         }
     
@@ -70,3 +74,6 @@
 
 
 
+@section WatchlistScript{
+    <script type="text/javascript" src="~/js/watchlist.js"></script>
+}

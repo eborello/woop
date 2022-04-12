@@ -1,0 +1,10 @@
+﻿.table_header {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.table th {
+    cursor: pointer;
+    text-decoration: underline;
+}
