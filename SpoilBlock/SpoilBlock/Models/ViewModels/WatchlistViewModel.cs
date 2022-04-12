@@ -13,19 +13,14 @@ namespace SpoilBlock.Models.ViewModels
 
         public bool IsEmpty { get; set; }
 
-
         public  IEnumerable<Medium> AllShows { get; set; }
-        public int Levels { get; set; } = 0;
 
-
-
+        
         public WatchlistViewModel()
         { 
             HasWoopUser = false;
             Username = String.Empty;
             AllShows = new List<Medium>();
-            
-
         }
 
         

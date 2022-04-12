@@ -1,9 +1,0 @@
-Background:
-	Given I am on the watchlist page
-	And I am logged in
-	
-Scenario: Clicking on Title will sort the shows alphabetically
-	When I click on the Title column header
-	Then the shows in the watchlist will be sorted alphabetically
-
-	

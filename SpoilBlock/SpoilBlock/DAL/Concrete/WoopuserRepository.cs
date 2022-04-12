@@ -24,10 +24,6 @@ namespace SpoilBlock.DAL.Concrete
             return _dbSet.Where(u => u.AspnetIdentityId == identityID).FirstOrDefault();
         }
 
-        public async Task<Woopuser>? GetWoopUserByIdentityIdAsync(string identityID)
-        {
-            return await _dbSet.Where(u => u.AspnetIdentityId == identityID).FirstOrDefaultAsync();
-        }
 
 
         public virtual IEnumerable<Medium> GetListOfShows(IEnumerable<Medium> mediaList, Woopuser user)

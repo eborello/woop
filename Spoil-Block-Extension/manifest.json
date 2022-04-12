@@ -1,36 +1,24 @@
 {
-    "manifest_version": 3,
+    "manifest_version": 2,
     "name": "Spoil Block",
     "description": "Block spoilers from YouTube.",
     "version": "1.0",
-    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvAbe/HaX8V5PtBcs5Le8r8vM+zW3UwQHe4GCwhBaV1g+JITYcQMvZKD9cp9k5TsQ2PDgK1XoMphqteDQrDUqNzgCJ2f8PEfqnkR87pzIP1b6o5wZi05YqqhDfGJL+glKsoGkwiOFjmzUWKxiNP/8mN8SoJB4NiK/gUTGYHLX6tutmzPeBXpayTQUjl1vdrtBWv2TYkR6Vi5hUosJONdMk4eH0ZhXq3jimumzj2th4zOo0QG7J77t7SPhMM5bTtTM/ChztFmx9703vnQ9HFcoYq1CDvqkCElAEpcrIWuBnze1oayPUTGFCsfFDw5cbcYoHna1L7tDWtJK7Mz9VdZX0QIDAQAB",
     "icons": {
         "16": "/images/16_SpoilBlockLogo.png",
         "48": "/images/48_SpoilBlockLogo.png",
         "128": "/images/128_SpoilBlockLogo.png"
     },
-    "background": {
-        "service_worker": "./background.js"
-    },
-    "options_page": "./options.html",
-    "action": {
+    "page_action": {
         "default_icon": {
             "16": "/images/16_SpoilBlockLogo.png",
             "48": "/images/48_SpoilBlockLogo.png",
             "128": "/images/128_SpoilBlockLogo.png"
-        },
-        "default_popup": "popup.html"
+        }
     },
-    "content_scripts": [],
-    "permissions": [
-        "tabs",
-        "activeTab",
-        "storage",
-        "identity",
-        "scripting"
-    ],
-    "host_permissions": [
-        "https://www.youtube.com/*",
-        "https://spoilblock.azurewebsites.net/*"
+    "content_scripts": [
+        {
+            "js": ["content.js"],
+            "matches": ["https://www.youtube.com/*"]
+        }
     ]
 }

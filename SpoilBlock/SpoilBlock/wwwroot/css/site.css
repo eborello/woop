@@ -62,24 +62,3 @@ body {
     overflow: auto;
 
 }
-
-.table_header {
-    background-color: transparent;
-    color:white;
-    border: none;
-    cursor: pointer;
-}
-
-.table th {
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-#td-title {
-    max-width: 100px;
-    max-height: 100px;
-}
-#td-description {
-    padding-top: 50px;
-    font-size: 20px;
-}
