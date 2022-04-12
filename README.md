@@ -18,4 +18,7 @@
     Github: @ncamuso
 
 ## **Project Info**
-Coming Soon!
+**Spoil Block** provides you with a spoiler-free YouTube experience tailored to your specific watchlist.  
+Select which movies or TV shows you are currently watching and/or would like to avoid spoilers for  
+and the Spoil Block Chrome extension will blur the title and thumbnail of YouTube videos associated  
+with said shows.
