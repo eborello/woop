@@ -29,23 +29,18 @@ namespace SpoilBlock.Controllers
             { 
                 wum = _woopuserRepository.GetWoopUserByIdentityId(id);
             }
-            if (wum == null) 
-                { 
-                    WatchlistViewModel empty = new WatchlistViewModel();
-                    return View(empty); 
-                }
-
+            if (wum == null) { WatchlistViewModel empty = new WatchlistViewModel(); return View(empty); }
             WatchlistViewModel vm = new WatchlistViewModel()
             {
                 HasWoopUser = wum != null,
                 Username = wum.Username ?? String.Empty,
-                AllShows = _woopusermediumRepository.GetListOfShowsForUser(wum.Id),
-                //AllShows = _woopuserRepository.GetListOfShows(_woopusermediumRepository.GetListOfShowsForUser(wum.Id), wum)
+                //AllShows = _woopusermediumRepository.GetListOfShowsForUser(wum.Id)
+                AllShows = _woopuserRepository.GetListOfShows(_woopusermediumRepository.GetListOfShowsForUser(wum.Id), wum)
+               
 
             };
+
             
-
-
             if (vm.AllShows.Count() == 0)
             {
                 vm.IsEmpty = true;
@@ -55,8 +50,5 @@ namespace SpoilBlock.Controllers
 
             return View(vm);
         }
-
-
-
     }
 }

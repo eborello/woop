@@ -1,5 +1,3 @@
-console.log("hi from content");
-
 function blurTitle (element) {
     element.style.color = 'transparent';
     element.style.textShadow = '0 0 5px rgba(0,0,0,0.5)';

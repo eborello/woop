@@ -24,8 +24,6 @@ namespace SpoilBlock.Models
         public string Title { get; set; } = null!;
         [StringLength(400)]
         public string Description { get; set; } = null!;
-        [StringLength(200)]
-        public string Image { get; set; } = null!;
 
         [InverseProperty(nameof(WoopuserMedium.Media))]
         public virtual ICollection<WoopuserMedium> WoopuserMedia { get; set; }

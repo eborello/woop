@@ -13,11 +13,11 @@ namespace SpoilBlock.DAL.Concrete
         public WoopUserMediumRepository(WOOPDbContext ctx) : base(ctx) 
         { }
 
-        public IEnumerable<int> GetBlockageLevel(int id)
+        public int GetBlockageLevel(int id)
         {
-            return GetAll().Where(x => x.UserId == id).Select(x => x.BlockageLevel).ToList();   
+            return GetAll().Where(x => x.Id == id).Select(x => x.BlockageLevel).Single();   
         }
-        public  IEnumerable<Medium> GetListOfShowsForUser(int? id)
+         IEnumerable<Medium> IWoopUserMediumRepository.GetListOfShowsForUser(int? id)
         {
             
             var accounts = GetAll().Select(a => a.UserId).ToList();
@@ -29,7 +29,6 @@ namespace SpoilBlock.DAL.Concrete
                     {
                         var mediaList = new List<Medium>();
                         mediaList = GetAll().Include(a => a.Media).Where(a => a.UserId == id).Select(a => a.Media).ToList();
-                        
                         if (mediaList != null)
                         {
                             return mediaList.OrderBy(u => u.Imdbid);
